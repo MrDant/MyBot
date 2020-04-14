@@ -1,0 +1,93 @@
+@import "tailwindcss/base";
+
+body {
+  width: 100%;
+  min-width: 25rem;
+}
+h1 {
+  @apply text-lg font-bold;
+}
+h2 {
+  @apply text-gray-700 text-sm font-bold mb-2 text-left;
+}
+
+/* 
+-----------------
+      Input : 
+-----------------
+*/
+input[type="text"] {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+input:focus {
+  @apply outline-none shadow-outline;
+}
+
+/* Select */
+select {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-white leading-tight;
+}
+
+select:hover {
+  @apply border-gray-500;
+}
+
+select:focus {
+  @apply outline-none shadow-outline;
+}
+
+/* checkbox */
+input[type="checkbox"]:focus {
+  box-shadow: none;
+}
+
+/* --------------- */
+
+button {
+  @apply text-white font-bold py-2 px-4 rounded cursor-pointer my-2 mx-1;
+}
+.icon {
+  @apply inline-block relative rounded-full p-3 icon text-3xl;
+}
+.card {
+  @apply max-w-sm rounded shadow-lg m-1;
+}
+.title {
+  @apply text-center text-xl pb-5;
+}
+.url {
+  @apply cursor-pointer text-blue-500 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold mr-2;
+}
+.url:hover {
+  @apply text-blue-700;
+}
+
+/* 
+-----------------
+      Colors : 
+-----------------
+*/
+.success {
+  @apply bg-green-500;
+}
+.success:hover {
+  @apply bg-green-700;
+}
+
+.primary {
+  @apply bg-blue-500;
+}
+.primary:hover {
+  @apply bg-blue-700;
+}
+
+.error {
+  @apply bg-red-500;
+}
+.error:hover {
+  @apply bg-red-700;
+}
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
