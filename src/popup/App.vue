@@ -18,7 +18,7 @@ export default {
   name: "App",
   data: () => {
     return {
-      data: { activated: false, actions: [] },
+      data: { activated: false, actions: [], title: "" },
       urlMatcher: ""
     };
   },
@@ -42,10 +42,12 @@ export default {
     "app-footer": TheFooterVue
   },
   created() {
+    // chrome.storage.sync.clear();
     chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
       this.urlMatcher = tabs[0].url;
+      this.data.title = tabs[0].title;
       chrome.storage.sync.get(this.urlMatcher, result => {
-        _.assign(this.data, result[this.urlMatcher]);
+        _.assignIn(this.data, result[this.urlMatcher]);
       });
     });
   }

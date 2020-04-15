@@ -1,29 +1,44 @@
 <template>
-  <div class="card bg-gray-300 overflow-hidden">
-    <div class="px-6 py-4 flex flex-wrap items-center card-header">
-      <div class="font-bold text-xl mb-2 text-blue-500 w-1/2">
-        {{ title }}
+  <div class="w-full md:w-1/2 xl:w-1/3">
+    <div class="card md:m-4 lg:m-6">
+      <div class="px-6 py-4 flex flex-wrap items-center card-header">
+        <div
+          class="font-bold text-xl mb-2 text-blue-500 w-2/3  whitespace-no-wrap overflow-hidden"
+          style="text-overflow: ellipsis;"
+        >
+          <a
+            :href="urlMatcher"
+            target="_blank"
+            @mouseleave="hiddenLink(true)"
+            @mouseenter="hiddenLink(false)"
+          >
+            {{ timeline.title }}</a
+          >
+          <div
+            class="absolute whitespace-no-wrap text-sm rounded-lg bg-gray-800 text-green-300 p-2"
+            ref="urlMatcher"
+            hidden
+          >
+            {{ urlMatcher }}
+          </div>
+        </div>
+        <div class="w-1/3 text-right items-center text-gray-500 font-bold">
+          <label class="text-sm">Activate</label>
+          <input type="checkbox" v-model="activated" />
+        </div>
       </div>
-      <div class="w-1/2 text-right items-center text-gray-500 font-bold">
-        <label class="text-sm">Activate</label>
-        <input type="checkbox" v-model="activated" />
+      <app-action
+        v-for="(action, index) in timeline.actions"
+        :key="index"
+        v-bind.sync="action"
+        v-on:removeAction="removeAction(index)"
+      ></app-action>
+      <div class="px-6 py-4 text-right align-bottom">
+        <button class="error" @click="deleteTimeline">Delete</button>
+        <button class="primary" @click="saveData" :disabled="disabled">
+          Save
+        </button>
       </div>
-    </div>
-    <app-action
-      v-for="(action, index) in timeline.actions"
-      :key="index"
-      v-bind.sync="action"
-      v-on:removeAction="removeAction(index)"
-    ></app-action>
-    <div class="px-6 py-4 text-right align-bottom">
-      <span class="url link">
-        <a :href="urlMatcher" target="blank">link</a>
-        <span class="popuptext">{{ urlMatcher }}</span>
-      </span>
-      <button class="error" @click="deleteTimeline">Delete</button>
-      <button class="primary" @click="saveData" :disabled="disabled">
-        Save
-      </button>
     </div>
   </div>
 </template>
@@ -42,6 +57,9 @@ export default {
     };
   },
   methods: {
+    hiddenLink(hidden) {
+      this.$refs.urlMatcher.hidden = hidden;
+    },
     deleteTimeline() {
       chrome.storage.sync.remove(this.urlMatcher, () => {
         this.$destroy();
@@ -103,9 +121,6 @@ export default {
         this.timeline.activated = value;
         this.saveData();
       }
-    },
-    title() {
-      return this.urlMatcher.substring(8, 20);
     }
   }
 };
