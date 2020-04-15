@@ -17,7 +17,13 @@
         />Import
       </button>
     </div>
-    <div class="flex flex-wrap items-baseline">
+    <div class="flex flex-wrap px-4 pt-4 xl:px-6">
+      <div
+        class="text-center w-full mt-40"
+        v-if="!Object.keys(timelines).length"
+      >
+        <span class="text-gray-600 text-3xl">Any Timeline created</span>
+      </div>
       <card
         v-for="(value, name) in timelines"
         :key="name"

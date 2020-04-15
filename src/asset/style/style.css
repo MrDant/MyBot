@@ -1,8 +1,15 @@
 @import "tailwindcss/base";
 
+html {
+  height: 100%;
+}
 body {
   width: 100%;
   min-width: 25rem;
+  @apply h-full;
+}
+.container {
+  @apply h-full;
 }
 h1 {
   @apply text-lg font-bold;
@@ -53,7 +60,7 @@ button:disabled {
   @apply inline-block relative rounded-full p-3 icon text-3xl;
 }
 .card {
-  @apply max-w-sm rounded shadow-lg m-1;
+  @apply rounded shadow-lg m-2 bg-gray-300 overflow-hidden;
 }
 .title {
   @apply text-center text-xl pb-5;
