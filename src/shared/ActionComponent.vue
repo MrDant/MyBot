@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center">
+  <div class="flex flex-wrap items-center px-3">
     <div class="w-1/2 px-1 py-1">
       <input
         id="selector"
@@ -26,7 +26,7 @@
       />
     </div>
     <div class="w-1/6 px-1">
-      <button class="error" @click="removeThisAction">X</button>
+      <button class="error" @click="$emit('removeAction')">X</button>
     </div>
   </div>
 </template>
@@ -35,13 +35,6 @@
 export default {
   name: "TheContent",
   props: ["selector", "type", "text"],
-  methods: {
-    removeThisAction() {
-      this.$destroy();
-      this.$el.parentNode.removeChild(this.$el);
-      this.$emit("removeAction");
-    }
-  },
   computed: {
     hidden() {
       return !(this.type == "text" || this.type == "password");
