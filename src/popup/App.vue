@@ -4,7 +4,7 @@
       :isActive="data.activated"
       @update:isActive="saveIsActived"
     ></app-header>
-    <app-content :timeline="data.timeline"></app-content>
+    <app-content :actions="data.actions"></app-content>
     <app-footer @savePopup="savePopup"></app-footer>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
   name: "App",
   data: () => {
     return {
-      data: { actived: false, timeline: [] },
+      data: { activated: false, actions: [] },
       urlMatcher: ""
     };
   },
@@ -28,7 +28,6 @@ export default {
       this.saveData();
     },
     savePopup() {
-      console.log(this.data.timeline);
       this.saveData(() => {
         window.close();
       });

@@ -10,7 +10,7 @@
         <h2>Actions</h2>
       </div>
       <actions
-        v-for="(action, index) in timeline"
+        v-for="(action, index) in actions"
         :key="index"
         v-bind.sync="action"
         @removeAction="removeAction(index)"
@@ -26,7 +26,7 @@ import ActionComponentVue from "../../shared/ActionComponent.vue";
 export default {
   name: "TheContent",
   props: {
-    timeline: Array
+    actions: Array
   },
   data: () => {
     return {
@@ -38,13 +38,13 @@ export default {
   },
   methods: {
     addAction() {
-      this.timeline.push({ selector: "", type: "click", text: "" });
+      this.actions.push({ selector: "", type: "click", text: "" });
     },
     removeAction(index) {
-      this.timeline.splice(index, 1);
+      this.actions.splice(index, 1);
     },
     updateAction(index, action) {
-      this.timeline[index] = action;
+      this.actions[index] = action;
     }
   }
 };
