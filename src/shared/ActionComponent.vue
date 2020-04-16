@@ -2,7 +2,6 @@
   <div class="flex flex-wrap items-center px-3">
     <div class="w-1/2 px-1 py-1">
       <input
-        id="selector"
         type="text"
         placeholder="Choose your component"
         :value="selector"
@@ -11,15 +10,15 @@
     </div>
     <div class="w-2/6 px-1 py-1">
       <select :value="type" @input="$emit('update:type', $event.target.value)">
-        <option value="click">Click</option>
-        <option value="hidden">Hidden</option>
-        <option value="delete">Delete</option>
-        <option value="check">Check</option>
-        <option value="text">Text</option>
-        <option value="password">Password</option>
+        <option value="_click">Click</option>
+        <option value="_hidden">Hidden</option>
+        <option value="_delete">Delete</option>
+        <option value="_check">Check</option>
+        <option value="_text">Text</option>
+        <option value="_password">Password</option>
       </select>
       <input
-        :type="type"
+        :type="inputType"
         :value="text"
         @input="$emit('update:text', $event.target.value)"
         :hidden="hidden"
@@ -36,8 +35,11 @@ export default {
   name: "TheContent",
   props: ["selector", "type", "text"],
   computed: {
+    inputType() {
+      return this.type.substring(1);
+    },
     hidden() {
-      return !(this.type == "text" || this.type == "password");
+      return !(this.type == "_text" || this.type == "_password");
     }
   }
 };

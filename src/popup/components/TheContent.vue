@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     addAction() {
-      this.actions.push({ selector: "", type: "click", text: "" });
+      this.actions.push({ selector: "", type: "_click", text: "" });
     },
     removeAction(index) {
       this.actions.splice(index, 1);
