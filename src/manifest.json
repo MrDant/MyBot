@@ -16,5 +16,11 @@
     "page": "options/options.html",
     "open_in_tab": true
   },
-  "permissions": ["storage", "tabs"]
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "permissions": ["storage", "tabs", "activeTab"]
 }
