@@ -33,7 +33,7 @@
     "webpack-extension-reloader": "^1.1.0"
   },
   "name": "my-butler",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "dependencies": {
     "vue": "^2.6.10",
