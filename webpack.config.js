@@ -31,7 +31,7 @@ const arrayCopyPlugin = [
   }
 ];
 const config = {
-  mode: "development",
+  mode: "production",
   context: __dirname + "/src",
   entry: {
     background: "./background.js",
@@ -103,6 +103,7 @@ const config = {
 };
 
 if (process.argv.indexOf("--watch") > 0) {
+  config.mode = "development";
   config.plugins = (config.plugins || []).concat([
     new ExtensionReloader({
       manifest: __dirname + "/src/manifest.json"
